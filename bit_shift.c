@@ -19,10 +19,6 @@ char circular_shift_right(char pattern)
 	return ( (pattern >> 1) | (pattern << 7) );
 }
 
-void circular_shift_left_right(void)
-{	
-	
-}
 int get_button_state_0x01(void)
 {
 	if( (PINF & 0x01) >> 0 == 1){
