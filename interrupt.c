@@ -11,11 +11,39 @@
 #include <avr/interrupt.h>
  
 volatile int state = 0;			// 현재 LED의 상태
+volatile char pattern = 0x01;
+
+char circular_shift_left(char pattern)
+{
+	return ( (pattern << 1) | (pattern >> 7) );
+}
+
+char circular_shift_right(char pattern)
+{
+	return ( (pattern >> 1) | (pattern << 7) );
+}
+
 
 ISR(INT0_vect)
 {
 	//state = (state + 1) % 2;			// LED 상태 전환
+	
+	PORTB = 0xFF; //Ex01
+	
+	//pattern = circular_shift_right(pattern);
+	//PORTB = pattern; Ex02
 }
+
+ISR(INT1_vect)
+{
+	PORTB = 0x00; //Ex02
+}
+
+ISR(INT2_vect)
+{
+	PORTB = 0xAA; //Ex03
+}
+
 
 void INIT_PORT(void)
 {
@@ -35,61 +63,19 @@ void INIT_INT0(void)
 	sei();							// 전역적으로 인터럽트 허용
 }
 
-char circular_shift_left(char pattern)
-{
-	return ( (pattern << 1) | (pattern >> 7) );
-}
-
-char circular_shift_right(char pattern)
-{
-	return ( (pattern >> 1) | (pattern << 7) );
-}
-
-void Ex01()
-{
-	if((PIND & 0x01) >> 0== 1) //PD0 값이 1일 때
-	{
-		PORTB = 0xFF;
-	}
-	if((PIND & 0x02) >> 1== 1) //PD1 값이 1일 때
-	{
-		PORTB = 0x00;
-	}
-	if((PIND & 0x04) >> 2 == 1) //PD2 값이 1일 때
-	{
-		PORTB = 0xAA;
-	}
-	//////연습문제 1
-}
-
-void Ex02()
-{
-	
-	
-}
-
 int main(void)
 {
 	INIT_PORT();				// 포트 설정
 	INIT_INT0();				// INT0 인터럽트 설정
-	
-	unsigned char pattern = 0x01;
-	
+		
 	while(1)
 	{
-		//Ex01();
-		pattern = circular_shift_left(pattern);
-		PORTB = pattern;	
-		_delay_ms(500);
-		
-		if((PIND & 0x01) >> 0 == 1)
-		{
-			pattern = circular_shift_right(pattern);
-			PORTB = pattern;
-			_delay_ms(500);
-		} //Ex02
-		
-		
+	
+		//pattern = circular_shift_left(pattern);
+		//PORTB = pattern;
+		//_delay_ms(500); 
+		//Ex02
+
 		/*if(state == 1)
 		{
 			PORTB = 0xAA; //0b 1010 1010
