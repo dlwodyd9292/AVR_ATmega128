@@ -36,12 +36,12 @@ ISR(INT0_vect)
 
 ISR(INT1_vect)
 {
-	PORTB = 0x00; //Ex02
+	PORTB = 0x00; //Ex01
 }
 
 ISR(INT2_vect)
 {
-	PORTB = 0xAA; //Ex03
+	PORTB = 0xAA; //Ex01
 }
 
 
