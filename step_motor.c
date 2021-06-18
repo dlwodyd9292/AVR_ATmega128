@@ -12,7 +12,7 @@ int step_index = -1;			// 현재 상태
 uint8_t stepForward(void)			// 시계방향 회전
 {
 	step_index++;
-	if(step_index >= 8) step_index = 0;
+	if(step_index >= 8) step_index = 0; // 2상일 경우 배열 인덱스 수가 4이므로 if문의 step_index 8을 4로 수정 
 
 	return step_data[step_index];
 }
@@ -20,7 +20,7 @@ uint8_t stepForward(void)			// 시계방향 회전
 uint8_t stepBackward(void)		// 반시계방향 회전
 {
 	step_index--;
-	if(step_index < 0) step_index = 8;
+	if(step_index < 0) step_index = 8; // 2상일 경우 배열 인덱스 수가 4이므로 if문의 st ep_index8을 4로 수정 
 	
 	return step_data[step_index];
 }
