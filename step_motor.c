@@ -31,14 +31,14 @@ int main(void)
 	
 	while(1)
 	{
-		for(int i = 0; i < STEP; i++){		// 200 스텝 진행
+		for(int i = 0; i < STEP; i++){		// 4000 스텝 진행
 			PORTC = stepForward();		// 시계방향
 			
 			_delay_ms(5);			// 스텝 간격은 5ms
 		}
 		_delay_ms(100);
 		
-		for(int i = 0; i < STEP; i++){		// 200 스텝 진행
+		for(int i = 0; i < STEP; i++){		// 4000 스텝 진행
 			PORTC = stepBackward();		// 반시계방향
 			
 			_delay_ms(5);			// 스텝 간격은 5ms
