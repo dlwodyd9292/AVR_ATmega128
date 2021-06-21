@@ -16,7 +16,6 @@ void i2c_lcd_init(void)
 	i2c_init();
 	_delay_ms(500);
 
-	//printf("Before Initialize... \r\n");	
 	i2c_lcd_command_8(0x30); _delay_ms(5);
 	i2c_lcd_command_8(0x30); _delay_us(100);
 	i2c_lcd_command_8(0x30); _delay_us(100);
@@ -28,7 +27,6 @@ void i2c_lcd_init(void)
 	i2c_lcd_command(0x06); _delay_us(50);
 	i2c_lcd_command(0x0C); _delay_us(50);	
 	
-	//printf("Connect Ok\r\n");	
 }
 
 void i2c_lcd_command_8(uint8_t command)
