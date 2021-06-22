@@ -52,13 +52,13 @@ int main(void)
 		  0b01101010,
 		//0b01000010,
 		  0b10111101,
-    //0b00111100
-	    0b11000011	 };
+    	//0b00111100
+	      0b11000011	 }; // 공통 음극 방식이므로 0과 1을 반전 
 	
 	while(1)
 	{
 		for(int i = 0; i < 8; i++){
-			uint8_t col_data = (1 << i);
+			uint8_t col_data = (1 << i); // 공통 음극 방식
 			
 			write_column_data(col_data);
 			write_row_data(smile[i]);
