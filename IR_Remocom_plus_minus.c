@@ -37,13 +37,13 @@ void print_received_data(int repeat)
 		if(LED_count < 0) LED_count = 0;
 	}
 	
-	PORTB = get_LED_pattern(LED_count);; //위의 if/else if 문의 결과로 나온 LED_count 값을 get_LED_pattern 함수를 통해서 Port B의 출력 제어  
+	PORTB = get_LED_pattern(LED_count);; // 위의 if/else if 문의 결과로 나온 LED_count 값을 get_LED_pattern 함수를 통해서 Port B의 출력 제어  
 }
 
 ISR(INT0_vect)
 {
-	int time = TCNT0;
-	int overflow = TIFR & (1 << TOV0); //오버플로우 발생했을 때 값을 overflow로 저장 
+	int time = TCNT0;		   // 인터럽트 발생 시간을 time 변수에 저장 
+	int overflow = TIFR & (1 << TOV0); // 오버플로우 발생했을 때 값을 overflow로 저장 
 	if(bitCount == 32)
 	{
 		if ((time > 201) && (time < 221) && (overflow == 0)) // 일반 데이터 리드 코드 13.5ms = 약 211 클록
