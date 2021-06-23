@@ -10,7 +10,7 @@ volatile int bitCount;
 volatile unsigned long receivedData;
 int LED_count = 4;
 
-uint8_t get_LED_pattern(int count)
+uint8_t get_LED_pattern(int count) // LED 패턴을 Port B에 입력하는 함수 
 {
 	uint8_t value = 0;
   
@@ -25,19 +25,19 @@ void print_received_data(int repeat)
 {
 	if(repeat == 1) return;
 	
-	if(receivedData == 0xFFA857)
+	if(receivedData == 0xFFA857) // + 버튼 값이 눌리면 
 	{
 		LED_count++;
 		if(LED_count > 8) LED_count = 8;
 	}
 	
-	else if(receivedData == 0xFFE01F)
+	else if(receivedData == 0xFFE01F) // - 버튼 값이 눌리면 
 	{
 		LED_count--;
 		if(LED_count < 0) LED_count = 0;
 	}
 	
-	PORTB = get_LED_pattern(LED_count);;
+	PORTB = get_LED_pattern(LED_count);; //위의 if/else if 문의 결과로 나온 LED_count 값을 get_LED_pattern 함수를 통해서 Port B의 출력 제어  
 }
 
 ISR(INT0_vect)
